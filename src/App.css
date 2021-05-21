@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.progressBar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.pld-btn {
+  margin-bottom: 10px;
+}
+
+

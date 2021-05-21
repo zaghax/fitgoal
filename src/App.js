@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import UploadVideos from './components/UploadVideos/UploadVideos';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hola</h1>
+      <UploadVideos/>
     </div>
   );
 }
