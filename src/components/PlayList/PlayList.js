@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {fbStorage} from '../../firebase'
+import { connect } from 'react-redux';
 
-
-function GetPlayList () {
+const PlayList = (props) => {
 
     const[playList, setPlayList] = useState([]);
 
@@ -39,35 +39,30 @@ function GetPlayList () {
         });
 
     },[]);
-
-
-    return playList;
-}
-
-export default function PlayList(){
-
-    const videos = GetPlayList();
-
-    console.log('videos', videos.length, videos)
-
-    const listVideos = () => {
-       
-        return videos.map((item, index) => {
-
-            return (
-                <div key={index}>
-                    <a href={item.videoUrl} target="_blank">{item.videoName}</a>
-                </div>
-            )
-        });
-
-        
-    };
-
     
-    return(
-        <div>
-            {listVideos()}
-        </div>
-    )
+    return playList.map((item, index) => {
+
+        return (
+            <div key={index}>
+                <h1>{props.currentVideoURL}</h1>
+                <a href={item.videoUrl} target="_blank" rel="noreferrer">{item.videoName}</a>
+            </div>
+        )
+
+    });
+
 }
+
+const mapStateToProps = state => {
+    return {
+        currentVideoURL: state.currentVideoURL
+    }
+}
+
+const mapDispathToProps = dispatch => {
+    return {
+        setCurrentVideoURL: (value) => dispatch({type: 'SET_CURRENT_VIDEO_URL', value: value})
+    }
+}
+
+export default connect(mapStateToProps, mapDispathToProps)(PlayList);

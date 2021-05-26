@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const initialSatate = {
-    currentVideoUrl: '123123123'
+    currentVideoURL: 'GIO'
 };
 
 const reducer = (state = initialSatate, action) => {
@@ -9,7 +9,7 @@ const reducer = (state = initialSatate, action) => {
         case 'SET_CURRENT_VIDEO_URL' :
             return {
                 ...state,
-                currentVideoUrl: action.value
+                currentVideoURL: action.value
             }
         default :
             return {

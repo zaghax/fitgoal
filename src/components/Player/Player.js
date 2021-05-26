@@ -1,21 +1,20 @@
-import React, {Component} from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
 
-class Player extends Component {
-    render(){
-        return (
-            <div>
-                <video width="640" height="480" controls> 
-                    <source src={this.props.currentVideoUrl} type="video/mp4"/>
-                </video>
-            </div>
-        )
-    }
+const Player = (props) => {
+    return (
+        <div>
+            <h3>{props.currentVideoURL}</h3>
+            <video width="640" height="480" controls> 
+                <source src={props.currentVideoURL} type="video/mp4"/>
+            </video>
+        </div>
+    )
 }
 
 const mapStateToProps = state => {
     return {
-        currentVideoUrl: state.currentVideoUrl
+        currentVideoURL: state.currentVideoURL
     }
 }
 
