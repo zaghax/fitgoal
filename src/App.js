@@ -1,16 +1,13 @@
 import './App.css';
-import UploadVideos from './components/UploadVideos/UploadVideos';
-import PlayList from './components/PlayList/PlayList';
-import Player from './components/Player/Player';
+import AppContainer from './components/AppContainer/AppContainer';
 
 function App() {
   return (
     <div className="App">
-      <Player/>
-      <UploadVideos/>
-      <PlayList/>
+      <AppContainer/>
     </div>
   );
+
 }
 
 export default App;

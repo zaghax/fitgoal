@@ -1,15 +1,21 @@
 import { createStore } from 'redux';
 
 const initialSatate = {
-    currentVideoURL: 'GIO'
+    currentVideo: {},
+    videoPlaylist: []
 };
 
 const reducer = (state = initialSatate, action) => {
     switch(action.type){
-        case 'SET_CURRENT_VIDEO_URL' :
+        case 'SET_CURRENT_VIDEO' :
             return {
                 ...state,
-                currentVideoURL: action.value
+                currentVideo: action.value
+            }
+        case 'SET_VIDEO_PLAYLIST' :
+            return {
+                ...state,
+                videoPlaylist: action.value
             }
         default :
             return {
@@ -19,5 +25,6 @@ const reducer = (state = initialSatate, action) => {
 }
 
 export const store = createStore(
-    reducer
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )

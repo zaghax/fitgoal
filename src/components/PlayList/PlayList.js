@@ -1,67 +1,50 @@
-import React, {useState, useEffect} from 'react'
-import {fbStorage} from '../../firebase'
+import React from 'react'
 import { connect } from 'react-redux';
+import {fbDataBase, fbStorage} from '../../firebase';
 
 const PlayList = (props) => {
 
-    const[playList, setPlayList] = useState([]);
+    const setVideo = (videoCurrentData) => {
+        props.setCurrentVideo(videoCurrentData);
+    }
 
-    useEffect(() => {
+    const removeElement = (item) => {
+        const playListDb = fbDataBase.collection('playList');
+        const playListStorage = fbStorage.child("videos").child(`${item.videoName}`);
+        playListDb.doc(item.fbId).delete();
+        playListStorage.delete();
+    }
 
-        fbStorage.child('videos').listAll().then((res) => {
-          
-            const getVideoData = async (item, index) => {
-            
-                await item.getDownloadURL().then((url)=>{
+    const renderList = () => {
+        return props.videoPlaylist.map((item, index) => {
+
+            return (
+                <li key={index}>
+                    <button onClick={() => {setVideo(item)}}>{item.videoName}</button>
+                    <button onClick={() => {removeElement(item)}}>Delete</button>
+                </li>
+            )
     
-                    const videoData = {
-                        videoName: item.name,
-                        videoUrl: url,
-                        dataIndex: index
-                    };
-
-                    setPlayList((prevState)=>(
-                        [
-                            ...prevState,
-                            videoData
-                        ]
-                    ));
-
-                });
-            }
-        
-            res.items.forEach((item, index) => {
-        
-                getVideoData(item, index);
-
-            })
-        
         });
+    }
 
-    },[]);
+    return (
+        <ul>
+            {renderList()}
+        </ul>
+    )
     
-    return playList.map((item, index) => {
-
-        return (
-            <div key={index}>
-                <h1>{props.currentVideoURL}</h1>
-                <a href={item.videoUrl} target="_blank" rel="noreferrer">{item.videoName}</a>
-            </div>
-        )
-
-    });
-
 }
 
 const mapStateToProps = state => {
     return {
-        currentVideoURL: state.currentVideoURL
+        videoPlaylist: state.videoPlaylist
     }
 }
 
 const mapDispathToProps = dispatch => {
     return {
-        setCurrentVideoURL: (value) => dispatch({type: 'SET_CURRENT_VIDEO_URL', value: value})
+        setCurrentVideo: (value) => dispatch({type: 'SET_CURRENT_VIDEO', value: value}),
     }
 }
 
