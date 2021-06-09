@@ -22,22 +22,29 @@ const AppContainer = (props) =>{
                     playList.push(res)
                 })
             }).then(()=> {
-                props.setVideoPlayList(playList);
-                let currentVideo = playList.length - 1;
-                props.setCurrentVideo(playList[currentVideo])
-            })
-
-            
+                if(playList.length !== 0){
+                    props.setVideoPlayList(playList);
+                    let currentVideo = playList.length - 1;
+                    props.setCurrentVideo(playList[currentVideo])
+                }
+            })  
+                      
         })
 
     },[]);
 
 
     return (
-        <div>
-            <Player/>
-            <UploadVideos/>
-            <PlayList/>
+        <div className="fit-app-container">
+            <div className="fit-row">
+                <div className="fit-col fit-col-6">
+                    {props.videoPlaylist.length !== 0 ? (<Player/>) : <div><h2>There are no videos</h2></div>}
+                    <UploadVideos/>
+                </div>
+                <div className="fit-col fit-col-6">
+                    <PlayList/>
+                </div>   
+            </div>
         </div>
     )
         

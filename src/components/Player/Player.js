@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux';
 
@@ -12,23 +13,28 @@ const Player = (props) => {
         setTimeout(()=> {
             setRenderVideo(true);
         }, 500)
-
         
     },[props.currentVideo]);
 
 
     return (
+        
         renderVideo ? 
         (
-            <div className="videoContainer">
-                <video width="640" height="360" controls> 
-                    <source src={props.currentVideo.videoUrl} type="video/mp4"/>
-                </video>
-                <h3>{props.currentVideo.videoName}</h3>
+            <div className="fit-video-container" >
+                <h3 className="fit-video-title">{props.currentVideo.videoName}</h3>
+                <div className="fit-video-player">
+                    <video controls> 
+                        <source src={props.currentVideo.videoUrl} type="video/mp4"/>
+                    </video>
+                </div>   
             </div> 
         ):(
-            <div className="videoContainer">
-                <p>Loading Video...</p>
+            <div className="fit-video-container">
+                <h3 className="fit-video-title">Loading Video...</h3>
+                <div className="fit-video-player">
+                    <p>Loading Video...</p>
+                </div>
             </div>
         )
     )

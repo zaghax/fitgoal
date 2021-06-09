@@ -1,4 +1,4 @@
-import './App.css';
+import './App.sass';
 import AppContainer from './components/AppContainer/AppContainer';
 
 function App() {

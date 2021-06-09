@@ -9,9 +9,10 @@ export default function UploadVideos(){
     const[state, setState] = useState({
         uploaderValue: 0,
         videoName: '',
-        videoFile: {},
+        videoFile: '',
         videoFileName: '',
-        videoType: ''
+        videoType: '',
+        showProgressBar: false
     });
 
     //Get the input value to set the file name 
@@ -36,10 +37,10 @@ export default function UploadVideos(){
             return {
                 ...prevState, 
                 videoFile: e.target.files[0], 
-                // videoFileName: e.target.files[0].name,
                 videoType: fileExtension 
             }
-        })
+        })  
+          
     }
 
     let inputFileElement = '';
@@ -58,8 +59,11 @@ export default function UploadVideos(){
 
         event.preventDefault();
 
-        const fileRef = fbStorage.child("videos").child(state.videoName);
+        setState( prevState => {
+            return {...prevState, showProgressBar: true }
+        })
 
+        const fileRef = fbStorage.child("videos").child(state.videoName);
 
         //Upload file process to the firebase storage folder "videos"
 
@@ -100,7 +104,8 @@ export default function UploadVideos(){
                             videoName: '',
                             videoFile: '',
                             videoFileName: '',
-                            videoType: ''
+                            videoType: '',
+                            showProgressBar: false
                         })
 
                         inputFileElement.value = "";
@@ -122,16 +127,24 @@ export default function UploadVideos(){
         //Print the form 
 
         <form 
-            className="form"
+            className="fit-upld-form"
             onSubmit={uploadVideo}
         >
-            <h3>Upload Video</h3>
-            <label>Name:</label>
-            <input type="text" onChange={getVideoName} value={state.videoName}/>
-            <label>Select your file</label>
-            <input type="file" onChange={getVideoFile} className="upld-btn" accept="video/*" ref={(e)=>{getInputFile(e)}}/>
-            <progress className="progressBar" value={state.uploaderValue} max="100">0%</progress>
-            <button type="submit" disabled={state.videoName !== '' && state.videoFile !== {} ? false : true }>Upload</button>
+            <div class="fit-row">
+                <div className="fit-col fit-col-6">
+                    <h3 className="fit-upld-title">Upload your video</h3>
+                </div>
+                <div className="fit-col fit-col-6">
+                    <div className="fit-upld-fields">
+                        <label>Video Name:</label>
+                        <input type="text" onChange={getVideoName} value={state.videoName} className="fit-upld-input"/>
+                        <input type="file" onChange={getVideoFile} className="fit-upld-btn" accept="video/*" ref={(e)=>{getInputFile(e)}}/>
+                        {state.showProgressBar ? <progress className="fit-upld-progress-bar" value={state.uploaderValue} max="100">0%</progress> : null}
+                        <button type="submit" disabled={state.videoName !== '' && state.videoFile !== '' ? false : true }>Upload</button>
+                    </div>   
+                </div>
+            </div>
+            
         </form>
     )
 

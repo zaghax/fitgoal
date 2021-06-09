@@ -1,0 +1,71 @@
+.fit-upld-form
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  background: $wt
+  border-radius: 7px
+  padding: 20px
+
+.fit-upld-title
+    font-size: 18px
+    font-weight: 400
+    text-align: center
+    margin: 0
+
+.fit-upld-fields
+    display: flex
+    flex-flow: column
+
+.fit-upld-input
+    margin-bottom: 10px
+
+.fit-upld-btn 
+    margin-bottom: 10px
+    color: transparent
+    &::-webkit-file-upload-button 
+        visibility: hidden
+    &::before 
+        content: 'Choose file'
+        color: $wt
+        display: inline-block
+        background: $primary
+        border: none
+        border-radius: 7px
+        padding: 8px
+        outline: none
+        white-space: nowrap
+        -webkit-user-select: none
+        cursor: pointer
+        text-shadow: none
+        font-weight: 300
+        font-size: 18px
+        width: 100%
+        text-align: center
+        box-sizing: border-box
+    &::hover
+        &::before
+            border-color: black
+    &::active
+        outline: 0
+        &::before
+            background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9)
+            
+
+.fit-upld-progress-bar
+    -webkit-appearance: none
+    appearance: none
+    width: 100%
+    margin-bottom: 10px
+    height: 6px
+    display: inline-block
+    border-radius: 3px
+    overflow: hidden
+    &::-webkit-progress-bar
+        background: $text50
+    &::-webkit-progress-value
+        background: $secondary
+        border-radius: 3px
+        overflow: hidden
+
+    
