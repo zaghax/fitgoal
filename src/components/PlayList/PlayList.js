@@ -4,8 +4,9 @@ import {fbDataBase, fbStorage} from '../../firebase';
 
 const PlayList = (props) => {
 
-    const setVideo = (videoCurrentData) => {
+    const setVideo = (videoCurrentData, currentlyPlaying) => {
         props.setCurrentVideo(videoCurrentData);
+        props.setCurrentVideoIndex(currentlyPlaying);
     }
 
     const removeElement = (item) => {
@@ -19,9 +20,9 @@ const PlayList = (props) => {
         return props.videoPlaylist.map((item, index) => {
 
             return (
-                <li key={index}>
-                    <button onClick={() => {setVideo(item)}}>{item.videoName}</button>
-                    <button onClick={() => {removeElement(item)}}>Delete</button>
+                <li className="fit-playlist-item" key={index}>
+                    <a className="fit-video-link" onClick={() => {setVideo(item, index)}}>{item.videoName}</a>
+                    <button className="fit-remove-video-btn" onClick={() => {removeElement(item)}}>Delete</button>
                 </li>
             )
     
@@ -29,9 +30,11 @@ const PlayList = (props) => {
     }
 
     return (
-        <ul>
-            {renderList()}
-        </ul>
+        <div className="fit-playlist">
+            <ul className="fit-playlist-ul">
+                {renderList()}
+            </ul>
+        </div>
     )
     
 }
@@ -45,6 +48,7 @@ const mapStateToProps = state => {
 const mapDispathToProps = dispatch => {
     return {
         setCurrentVideo: (value) => dispatch({type: 'SET_CURRENT_VIDEO', value: value}),
+        setCurrentVideoIndex: (value) => dispatch({type: 'SET_CURRENT_VIDEO_INDEX', value: value}),
     }
 }
 

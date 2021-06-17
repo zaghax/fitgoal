@@ -2,6 +2,7 @@ import { createStore } from 'redux';
 
 const initialSatate = {
     currentVideo: {},
+    currentVideoIndex: 0,
     videoPlaylist: []
 };
 
@@ -11,6 +12,11 @@ const reducer = (state = initialSatate, action) => {
             return {
                 ...state,
                 currentVideo: action.value
+            }
+        case 'SET_CURRENT_VIDEO_INDEX' :
+            return {
+                ...state,
+                currentVideoIndex: action.value
             }
         case 'SET_VIDEO_PLAYLIST' :
             return {

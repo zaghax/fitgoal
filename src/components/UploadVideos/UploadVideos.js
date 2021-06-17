@@ -130,7 +130,7 @@ export default function UploadVideos(){
             className="fit-upld-form"
             onSubmit={uploadVideo}
         >
-            <div class="fit-row">
+            <div className="fit-row">
                 <div className="fit-col fit-col-6">
                     <h3 className="fit-upld-title">Upload your video</h3>
                 </div>

@@ -26,6 +26,7 @@ const AppContainer = (props) =>{
                     props.setVideoPlayList(playList);
                     let currentVideo = playList.length - 1;
                     props.setCurrentVideo(playList[currentVideo])
+                    props.setCurrentVideoIndex(currentVideo)
                 }
             })  
                       
@@ -38,7 +39,7 @@ const AppContainer = (props) =>{
         <div className="fit-app-container">
             <div className="fit-row">
                 <div className="fit-col fit-col-6">
-                    {props.videoPlaylist.length !== 0 ? (<Player/>) : <div><h2>There are no videos</h2></div>}
+                    {props.videoPlaylist.length !== 0 ? (<Player key={props.currentVideo.videoName}/>) : <div><h2>There are no videos</h2></div>}
                     <UploadVideos/>
                 </div>
                 <div className="fit-col fit-col-6">
@@ -52,14 +53,16 @@ const AppContainer = (props) =>{
 
 const mapStateToProps = state => {
     return {
-        videoPlaylist: state.videoPlaylist
+        videoPlaylist: state.videoPlaylist,
+        currentVideo: state.currentVideo
     }
 }
 
 const mapDispathToProps = dispatch => {
     return {
         setCurrentVideo: (value) => dispatch({type: 'SET_CURRENT_VIDEO', value: value}),
-        setVideoPlayList: (value) => dispatch({type: 'SET_VIDEO_PLAYLIST', value: value})
+        setCurrentVideoIndex: (value) => dispatch({type: 'SET_CURRENT_VIDEO_INDEX', value: value}),
+        setVideoPlayList: (value) => dispatch({type: 'SET_VIDEO_PLAYLIST', value: value}),
     }
 }
 
