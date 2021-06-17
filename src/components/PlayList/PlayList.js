@@ -21,7 +21,7 @@ const PlayList = (props) => {
 
             return (
                 <li className="fit-playlist-item" key={index}>
-                    <a className="fit-video-link" onClick={() => {setVideo(item, index)}}>{item.videoName}</a>
+                    <a className={`fit-video-link  ${props.currentVideoIndex == index ? 'active': null}`} onClick={() => {setVideo(item, index)}}>{item.videoName}</a>
                     <button className="fit-remove-video-btn" onClick={() => {removeElement(item)}}>Delete</button>
                 </li>
             )
@@ -41,7 +41,8 @@ const PlayList = (props) => {
 
 const mapStateToProps = state => {
     return {
-        videoPlaylist: state.videoPlaylist
+        videoPlaylist: state.videoPlaylist,
+        currentVideoIndex: state.currentVideoIndex
     }
 }
 

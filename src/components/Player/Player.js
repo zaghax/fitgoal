@@ -14,7 +14,7 @@ const Player = (props) => {
         const nextVideoIndex = props.currentVideoIndex + 1;
         const nextVideoData = props.videoPlaylist[nextVideoIndex];
 
-        if (nextVideoIndex < props.videoPlaylist.length - 1){
+        if (nextVideoIndex < props.videoPlaylist.length){
             props.setCurrentVideo(nextVideoData);
             props.setCurrentVideoIndex(nextVideoIndex);
         }
