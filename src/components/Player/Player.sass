@@ -2,6 +2,7 @@
 .fit-video-container 
     width: 100%
     margin-bottom: 22px
+    
           
 .fit-video-player
     width: 100%
@@ -12,12 +13,34 @@
     justify-content: center
     border-radius: 7px
     overflow: hidden
-    video 
-        width: 100%
-        height: auto
+    position: relative
 
 .fit-video-title
     color: $wt
     font-size: 34px
     line-height: 1
     font-weight: 300
+
+.fit-play-btn
+    width: 70px
+    height: 70px
+    border-radius: 50%
+    -webkit-appearance: none
+    background: $secondary
+    border: none
+    color: $wt
+    display: block 
+    position: absolute
+    font-size: 25px
+    top: 50%
+    left: 50%
+    transform: translate(-50% , -50%)
+    transition: all 500ms ease-in
+    &:focus,
+    &:active
+        outline: none 
+        border: none 
+    &:active
+        zoom: 0.9
+
+ 

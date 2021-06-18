@@ -5,6 +5,7 @@ import ReactPlayer from 'react-player';
 const Player = (props) => {
 
     const [renderVideo, setRenderVideo] = useState(false);
+    const [playState, setPlayState] = useState(false);
 
 
     // When the video ends the player trigger the onPlayerEnd method to call and set the next video in the playlist 
@@ -19,6 +20,10 @@ const Player = (props) => {
             props.setCurrentVideoIndex(nextVideoIndex);
         }
 
+    }
+
+    const playHandle = () => {
+        setPlayState(true)
     }
 
     useEffect(()=> {
@@ -60,7 +65,12 @@ const Player = (props) => {
                     <ReactPlayer 
                         url={props.currentVideo.videoUrl} 
                         controls
-                        onEnded={onPlayerEnd}/>
+                        onEnded={onPlayerEnd}
+                        playing={playState}
+                        width="640"
+                        height="300"/>
+                        
+                    {!playState ? <button className="fit-play-btn icon-play3" onClick={playHandle} /> : null} 
                 </div>   
             </div> 
         ):(
