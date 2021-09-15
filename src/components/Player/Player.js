@@ -36,7 +36,7 @@ const Player = (props) => {
 
 
     return (
-        
+
         renderVideo ? 
         (
             <div className="fit-video-container" >

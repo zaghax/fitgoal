@@ -10,3 +10,7 @@ $lightGray: #E9E9E9
 
 $text: #50535A
 $text50: rgba($text, 0.5)
+
+@function vw($px-vw, $base-vw: 1140px)    
+    @return ($px-vw * 100vw) / $base-vw
+
