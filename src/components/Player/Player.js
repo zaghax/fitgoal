@@ -37,26 +37,6 @@ const Player = (props) => {
 
     return (
         
-    //     renderVideo ? 
-    //     (
-    //         <div className="fit-video-container" >
-    //             <h3 className="fit-video-title">{props.currentVideo.videoName}</h3>
-    //             <div className="fit-video-player">
-    //                 <video controls> 
-    //                     <source src={props.currentVideo.videoUrl} type="video/mp4"/>
-    //                 </video>
-    //             </div>   
-    //         </div> 
-    //     ):(
-    //         <div className="fit-video-container">
-    //             <h3 className="fit-video-title">Loading Video...</h3>
-    //             <div className="fit-video-player">
-    //                 <p>Loading Video...</p>
-    //             </div>
-    //         </div>
-    //     )
-    // )
-
         renderVideo ? 
         (
             <div className="fit-video-container" >
